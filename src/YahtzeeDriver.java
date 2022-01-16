@@ -11,8 +11,6 @@ public class YahtzeeDriver
     */
     public static void main(String [] args)
     {
-        System.out.println("Welcome to Lilly's AP CSA Yahtzee Game!!");
-        YahtzeeGame game = new YahtzeeGame();
         Scanner s = new Scanner(System.in);
         String play;
         int score;
@@ -21,6 +19,8 @@ public class YahtzeeDriver
         int scoreSum = 0;
         int timesPlayed = 0;
         do {
+            System.out.println("Welcome to Lilly's AP CSA Yahtzee Game!!");
+            YahtzeeGame game = new YahtzeeGame();
             timesPlayed++;
             score = game.playGame();
             if (score < minScore)
@@ -33,7 +33,7 @@ public class YahtzeeDriver
         } while (play.equals("y"));
         System.out.println("You have chosen to end the game. \nTimes played: " + timesPlayed);
         System.out.println("Min score: " + minScore);
-        System.out.println("Min score: " + minScore);
-
+        System.out.println("Max score: " + maxScore);
+        System.out.println("Average score: " + scoreSum / timesPlayed);
     }
 }

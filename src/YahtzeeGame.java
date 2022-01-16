@@ -64,20 +64,21 @@ public class YahtzeeGame {
         System.out.print("Are you (s)atisfied or to you want to (r)oll again and freeze some dice? (s/r): ");
         String userInput = s.nextLine();
         int count = 0;
-        while (userInput.equals("r") && count < 2) {
+        if (userInput.equals("r")) {
             chooseFrozen();
             rollDice();
             printDice();
             System.out.print("Are you (s)atisfied or to you want to (r)oll again and freeze some dice? (s/r): ");
-            count++;
+            userInput = s.nextLine();
+            if (userInput.equals("r")) {
+                chooseFrozen();
+                rollDice();
+                printDice();
+            }
         }
         markScore();
     }
 
-    /* rollDice TODO:
-        For each of the 5 dice, you should do the following:
-        If the die is not frozen, you should roll that die. Otherwise if it is frozen, unfreeze it but do NOT roll it.
-    */
     private void rollDice() {
         //dieOne
         if (dieOne.isFrozen())
@@ -106,16 +107,11 @@ public class YahtzeeGame {
             dieFive.rollDie();
     }
 
-    /* chooseFrozen TODO:
-        1. Prompt the user to enter which dice to freeze (sample prompt provided).
-        2. For each number entered, freeze the corresponding die by calling the "freezeDie" method for that
-           particular YahtzeeDie object.
-    */
     private void chooseFrozen() {
         Scanner s = new Scanner(System.in);
         System.out.print("Enter which dice to freeze (1-5). Enter them all in one line (ex: 1,2,5 or 134 or 2 5): ");
         String userFreezeDie = s.nextLine();
-        for (int i = 0; i < userFreezeDie.length() - 1; i++){
+        for (int i = 0; i < userFreezeDie.length(); i++){
             if ((int)userFreezeDie.charAt(i) > 48 && (int)userFreezeDie.charAt(i) < 54) {
                 int die = (int)userFreezeDie.charAt(i);
                 switch (die){
@@ -131,10 +127,6 @@ public class YahtzeeGame {
 
     }
 
-    /* printDice TODO:
-        Print the value of each of the 5 dice using the "getValue" method, separated by tabs, all on one line.
-        (Ex: 2   5   3   1   5).
-    */
     private void printDice() {
         System.out.println(dieOne.getValue() + " " + dieTwo.getValue() + " " + dieThree.getValue() + " " + dieFour.getValue() + " " + dieFive.getValue());
     }
@@ -179,7 +171,7 @@ public class YahtzeeGame {
                 System.out.println("4. Fours \t10. Sm Straight");
                 System.out.println("5. Fives \t11. Lg Straight");
                 System.out.println("6. Sixes \t12. Yahtzee");
-                System.out.println("\t\t13. Chance");
+                System.out.println("\t\t\t13. Chance");
                 System.out.print("Enter 1-13: ");
                 //step 1b2
                 userScored = s.nextInt();
