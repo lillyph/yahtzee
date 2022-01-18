@@ -1,3 +1,11 @@
+/**
+ * Yahtzee 2
+ * Author: Lilly Phan
+ * Collaborator(s): used w3schools to learn how to initialize arrays and access elements https://www.w3schools.com/java/java_arrays.asp
+ * Date: 1/18/2022
+ * On My Honor, I confirm that I followed all collaboration policy guidelines, and that the work I am submitting is my own: LP
+ **/
+
 public class YahtzeeScorecard {
     private int ones = -1;
     private int twos = -1;
@@ -17,16 +25,6 @@ public class YahtzeeScorecard {
 
     public YahtzeeScorecard() { }
 
-
-    /* markOnes TODO:
-        1. If the instance variable "ones" is not equal to -1 (meaning the score has already been updated) then
-           return false.
-        2. Otherwise:
-            a. Count the number of ones. The arguments "var1" through "var5" represent the values of the 5 dice,
-               so you will want to use these to figure out the number of ones.
-            b. Update the instance variable "ones" based on the number of ones you counted.
-            c. Return true.
-     */
     public boolean markOnes(int var1, int var2, int var3, int var4, int var5) {
         if (ones != -1)
             return false;
@@ -46,7 +44,6 @@ public class YahtzeeScorecard {
         }
     }
 
-    // TODO: markTwos should be the same as markOnes, but with the appropriate variables/values.
     public boolean markTwos(int var1, int var2, int var3, int var4, int var5) {
 
         if (twos != -1)
@@ -67,7 +64,6 @@ public class YahtzeeScorecard {
         }
     }
 
-    // TODO: markThrees should be the same as markOnes, but with the appropriate variables/values.
     public boolean markThrees(int var1, int var2, int var3, int var4, int var5) {
 
         if (threes != -1)
@@ -88,7 +84,6 @@ public class YahtzeeScorecard {
         }
     }
 
-    // TODO: markFours should be the same as markOnes, but with the appropriate variables/values.
     public boolean markFours(int var1, int var2, int var3, int var4, int var5) {
 
         if (fours != -1)
@@ -109,7 +104,6 @@ public class YahtzeeScorecard {
         }
     }
 
-    // TODO: markFives should be the same as markOnes, but with the appropriate variables/values.
     public boolean markFives(int var1, int var2, int var3, int var4, int var5) {
         if (fives != -1)
             return false;
@@ -129,7 +123,6 @@ public class YahtzeeScorecard {
         }
     }
 
-    // TODO: markSixes should be the same as markOnes, but with the appropriate variables/values.
     public boolean markSixes(int var1, int var2, int var3, int var4, int var5) {
         if (sixes != -1)
             return false;
@@ -149,28 +142,14 @@ public class YahtzeeScorecard {
         }
     }
 
-    /* markThreeOfAKind TODO:
-        1. If the instance variable "threeKind" is not equal to -1 (meaning the score has already been updated),
-           then return false.
-        2. Otherwise:
-            a. Determine whether the player actually has three of a kind (aka at least three dice with the same value).
-            b. In order to do this, you will want to create a new YahtzeeSortDice object using the arguments var1,
-               var2, var3, var4, and var5. This will sort the values of the dice into numerical order (Ex: if you have
-               5   2   3   1   1, it will sort it into 1   1   2   3   5). You can access the sorted numbers by
-               using the methods getFirst(), getSecond(), getThird(), getFourth(), and getFifth() from the
-               YahtzeeSortDice class.
-            c. If they do have three of a kind, add up all the dice values and update the "threeKind" instance variable.
-               If they do not have a three of a kind, set "threeKind" to 0.
-            d. Return true.
-     */
     public boolean markThreeOfAKind(int var1, int var2, int var3, int var4, int var5) {
         if (threeKind != -1){
             return false;
         } else {
             YahtzeeSortDice sorter = new YahtzeeSortDice(var1, var2, var3, var4, var5);
-            if (sorter.getFirst() == sorter.getThird() || sorter.getThird() == sorter.getFifth()) {
+            if (sorter.getFirst() == sorter.getThird() || sorter.getThird() == sorter.getFifth()) { //checks for instances like 1 1 1 3 4 or 4 5 6 6 6
                 threeKind = var1 + var2 + var3 + var4 + var5;
-            } else if (sorter.getSecond() == sorter.getFourth()){
+            } else if (sorter.getSecond() == sorter.getFourth()){ //checks for instances like 2 5 5 5 6
                 threeKind = var1 + var2 + var3 + var4 + var5;
             } else {
                 threeKind = 0;
@@ -179,28 +158,14 @@ public class YahtzeeScorecard {
         }
     }
 
-    /* markFourOfAKind TODO:
-        1. If the instance variable "fourKind" is not equal to -1 (meaning the score has already been updated),
-           then return false.
-        2. Otherwise:
-            a. Determine whether the player actually has a four of a kind (aka at least four dice with the same value).
-            b. In order to do this, you will want to create a new YahtzeeSortDice object using the arguments var1,
-               var2, var3, var4, and var5. This will sort the values of the dice into numerical order (Ex: if you have
-               5   2   3   1   1, it will sort it into 1   1   2   3   5). You can access the sorted numbers by
-               using the methods getFirst(), getSecond(), getThird(), getFourth(), and getFifth() from the
-               YahtzeeSortDice class.
-            c. If they do have four of a kind, add up all the dice values and update the "fourKind" instance variable.
-               If they do not have a four of a kind, set "fourKind" to 0.
-            d. Return true.
-     */
     public boolean markFourOfAKind(int var1, int var2, int var3, int var4, int var5) {
         if (fourKind != -1){
             return false;
         } else {
             YahtzeeSortDice sorter = new YahtzeeSortDice(var1, var2, var3, var4, var5);
-            if (sorter.getFirst() == sorter.getFourth()) {
+            if (sorter.getFirst() == sorter.getFourth()) { //checks for instances like 2 2 2 2 4
                 fourKind = var1 + var2 + var3 + var4 + var5;
-            } else if (sorter.getSecond() == sorter.getFifth()){
+            } else if (sorter.getSecond() == sorter.getFifth()){ //checks for instances like 1 3 3 3 3
                 fourKind = var1 + var2 + var3 + var4 + var5;
             } else {
                 fourKind = 0;
@@ -209,29 +174,14 @@ public class YahtzeeScorecard {
         }
     }
 
-    /* markFullHouse TODO:
-        1. If the instance variable "fullHouse" is not equal to -1 (meaning the score has already been updated),
-           then return false.
-        2. Otherwise:
-            a. Determine whether the player actually has a Full House (aka three of the dice have the same value and the
-               other two dice have the same value. Ex: 5   5   5   4   4, or 2   2   3   3   2, or 1   2   1   2   1).
-            b. In order to do this, you will want to create a new YahtzeeSortDice object using the arguments var1,
-               var2, var3, var4, and var5. This will sort the values of the dice into numerical order (Ex: if you have
-               5   2   3   1   1, it will sort it into 1   1   2   3   5). You can access the sorted numbers by
-               using the methods getFirst(), getSecond(), getThird(), getFourth(), and getFifth() from the
-               YahtzeeSortDice class.
-            c. If they do have a Full House, update the "fullHouse" instance variable to be 25.
-               If they do not have a Full House, set "fullHouse" to 0.
-            d. Return true.
-     */
     public boolean markFullHouse(int var1, int var2, int var3, int var4, int var5) {
         if (fullHouse != -1){
             return false;
         } else {
             YahtzeeSortDice sorter = new YahtzeeSortDice(var1, var2, var3, var4, var5);
-            if (sorter.getFirst() == sorter.getThird() && sorter.getFourth() == sorter.getFifth()) {
+            if (sorter.getFirst() == sorter.getThird() && sorter.getFourth() == sorter.getFifth()) { //checks for instances like 4 4 4 5 5
                 fullHouse = 25;
-            } else if (sorter.getThird() == sorter.getFifth() && sorter.getFirst() == sorter.getSecond()) {
+            } else if (sorter.getThird() == sorter.getFifth() && sorter.getFirst() == sorter.getSecond()) { //checks for instances like 4 4 5 5 5
                 fullHouse = 25;
             } else {
                 fullHouse = 0;
@@ -240,59 +190,35 @@ public class YahtzeeScorecard {
         }
     }
 
-    /* markSmallStraight TODO:
-        1. If the instance variable "smStraight" is not equal to -1 (meaning the score has already been updated),
-           then return false.
-        2. Otherwise:
-            a. Determine whether the player actually has a small straight (aka a sequence of 4 sequential numbers.
-               Ex: 1   2   3   4   2 or 4   2   3   4   5 ).
-            b. In order to do this, you will want to create a new YahtzeeSortDice object using the arguments var1,
-               var2, var3, var4, and var5. This will sort the values of the dice into numerical order (Ex: if you have
-               5   2   3   1   1, it will sort it into 1   1   2   3   5). You can access the sorted numbers by
-               using the methods getFirst(), getSecond(), getThird(), getFourth(), and getFifth() from the
-               YahtzeeSortDice class.
-            c. If they do have a small straight, update the "smStraight" instance variable to 30.
-               If they do not have a small straight, set "smStraight" to 0.
-            d. Return true.
-     */
-
-    //NEEDS SERIOUS WORK PLEASE FIX
     public boolean markSmallStraight(int var1, int var2, int var3, int var4, int var5) {
         if (smStraight != -1){
             return false;
         } else {
-            YahtzeeSortDice sorter = new YahtzeeSortDice(var1, var2, var3, var4, var5); //3 4 4 5 6
-            if (sorter.getFirst() + 3 == sorter.getFourth() || sorter.getSecond() + 3 == sorter.getFifth()) {
-                smStraight = 30;
-            } else {
-                smStraight = 0;
+            YahtzeeSortDice sorter = new YahtzeeSortDice(var1, var2, var3, var4, var5);
+            int [] dice = {sorter.getFirst(), sorter.getSecond(), sorter.getThird(), sorter.getFourth(), sorter.getFifth()}; //array to loop through die efficiently
+            int straightCounter = 0; //counter tracks how many consecutive numbers are present
+            int current = dice[0]; //last number that was a consecutive
+            for (int i = 0; i < dice.length; i++){ //iterates through array and checks for consecutive numbers that iterate by one
+                if (current + 1 == dice[i]){ //if the next element is a consecutive number to the current, update current and the count
+                    current = dice[i];
+                    straightCounter++;
+                }
+                if (straightCounter >= 3) { //if there are 3 instances of the next element being consecutive, there are 4 consecutive nums
+                    smStraight = 30;
+                    return true;
+                }
             }
+            smStraight = 0;
             return true;
         }
     }
 
-    /* markLargeStraight TODO:
-        1. If the instance variable "lgStraight" is not equal to -1 (meaning the score has already been updated),
-           then return false.
-        2. Otherwise:
-            a. Determine whether the player actually has a large straight (aka a sequence of 5 sequential numbers.
-               Ex: 1   2   3   4   5 or 2   3   4   5   6).
-            b.
-            b. In order to do this, you will want to create a new YahtzeeSortDice object using the arguments var1,
-               var2, var3, var4, and var5. This will sort the values of the dice into numerical order (Ex: if you have
-               5   2   3   1   1, it will sort it into 1   1   2   3   5). You can access the sorted numbers by
-               using the methods getFirst(), getSecond(), getThird(), getFourth(), and getFifth() from the
-               YahtzeeSortDice class.
-            c. If they do have a large straight, update the "lgStraight" instance variable to 40.
-               If they do not have a large straight, set "lgStraight" to 0.
-            d. Return true.
-     */
     public boolean markLargeStraight(int var1, int var2, int var3, int var4, int var5) {
         if (lgStraight != -1){
             return false;
         } else {
             YahtzeeSortDice sorter = new YahtzeeSortDice(var1, var2, var3, var4, var5);
-            if (sorter.getFirst() + 4 == sorter.getFifth()) {
+            if (sorter.getFirst() + 4 == sorter.getFifth()) { //covers both possibilities 1 2 3 4 5 and 2 3 4 5 6
                 lgStraight = 40;
             } else {
                 lgStraight = 0;
@@ -301,19 +227,10 @@ public class YahtzeeScorecard {
         }
     }
 
-    /* markYahtzee TODO:
-        1. If the instance variable "yahtzee" is not equal to -1 (meaning the score has already been updated),
-           then return false.
-        2. Otherwise:
-            a. Check if the player actually has a Yahtzee (aka all dice are the same value).
-            c. If they do have a Yahtzee, update the "yahtzee" instance variable to 50.
-               If they do not have a yahtzee, set "yahtzee" to 0.
-            d. Return true.
-     */
     public boolean markYahtzee(int var1, int var2, int var3, int var4, int var5) {
         YahtzeeSortDice sorter = new YahtzeeSortDice(var1, var2, var3, var4, var5);
         if (yahtzee != -1){
-            if (sorter.getFirst() == sorter.getFifth())
+            if (sorter.getFirst() == sorter.getFifth()) //even if yahtzee has been marked, if it is a yahtzee then yahtzee bonus is applied
                 yahtzeeBonus++;
             return false;
         } else {
@@ -339,7 +256,7 @@ public class YahtzeeScorecard {
     public int getUpperTotal() {
         int extraOnes = 0; //accounts for the gap in total when scores are == to -1
         int [] totalNums = {ones, twos, threes, fours, fives, sixes}; //array to easily loop through scores, see header for source
-        for (int i = 0; i < totalNums.length; i++) { //loops and checks for -1 values
+        for (int i = 0; i < totalNums.length; i++) { //loops through elements and checks for -1 values
             if (totalNums[i] == -1)
                 extraOnes++;
         }

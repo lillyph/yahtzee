@@ -3,7 +3,7 @@ This driver should be used to verify that your YahtzeeDie class is working prope
 
 public class YahtzeeDieTestDriver {
 
-    public static void main(String args[]) {
+    public static void main(String[] args) {
 
         System.out.println("Yahtzee Die Test Driver Program");
 
