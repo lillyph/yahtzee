@@ -16,12 +16,6 @@ public class YahtzeeGame {
     public YahtzeeGame() {
     }
 
-    /* PlayGame TODO:
-        1. Call the method "takeTurn" 13 times. (You will be coding takeTurn later on in this class,
-           so feel free to do that first!)
-        2. Print the scorecard by calling the method "printScoreCard" on your YahtzeeScorecard object.
-        3. Return the grand total by calling the method "getGrandTotal" on your YahtzeeScorecard object.
-    */
     public int playGame() {
         takeTurn();
         takeTurn();
