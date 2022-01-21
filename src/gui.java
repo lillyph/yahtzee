@@ -33,7 +33,7 @@ public class gui implements ActionListener {
     }
 
     public static void main(String[] args) {
-        new gui();
+        new gui("mainMenu");
     }
 
     @Override
