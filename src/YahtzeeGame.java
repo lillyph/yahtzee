@@ -1,3 +1,11 @@
+/**
+ * Yahtzee 3
+ * Author: Lilly Phan
+ * Collaborator(s): N/A
+ * Date: 1/21/22
+ * On My Honor, I confirm that I followed all collaboration policy guidelines, and that the work I am submitting is my own: LP
+ **/
+
 import java.util.*;
 
 public class YahtzeeGame {
@@ -16,19 +24,13 @@ public class YahtzeeGame {
     public YahtzeeGame() {
     }
 
-    /* PlayGame TODO:
-        1. Call the method "takeTurn" 13 times. (You will be coding takeTurn later on in this class,
-           so feel free to do that first!)
-        2. Print the scorecard by calling the method "printScoreCard" on your YahtzeeScorecard object.
-        3. Return the grand total by calling the method "getGrandTotal" on your YahtzeeScorecard object.
-    */
     public int playGame() {
         takeTurn();
         takeTurn();
         takeTurn();
         takeTurn();
         takeTurn();
-        takeTurn();
+        takeTurn(); //13 turns
         takeTurn();
         takeTurn();
         takeTurn();
@@ -37,26 +39,9 @@ public class YahtzeeGame {
         takeTurn();
         takeTurn();
         scorecard.printScoreCard();
-        return scorecard.getGrandTotal();
+        return scorecard.getGrandTotal(); //return total so it can be used to calculate min/max and average
     }
 
-    /* takeTurn TODO:
-        1. Roll the dice by calling the "rollDice" method. (You will be coding rollDice later on in this class,
-           so feel free to do that first!)
-        2. Print out their first dice roll by calling the "printDice" method. (You will be coding printDice later
-           on in this class, so feel free to do that first!)
-        3. Ask the player if they are satisfied with their roll or if they want to roll again and freeze some
-           dice (prompt already given).
-        4. If the user chooses to roll again (enters "r") you should:
-             a. Ask them to choose which dice to freeze (make use of the "chooseFrozen" method, below).
-             b. Roll the dice again.
-             c. Print out their second dice roll.
-             d. Prompt the user to choose again (s/r).
-             e. If the user chooses to roll again, repeat a-d again for their third roll. (Max 3 rolls allowed.)
-        5. If the user chooses "s" after either of the first two rolls, immediately stop and go to step 6.
-        6. Call the "markScore" method. (You will be coding markScore later on in this class,
-           so feel free to do that first!)
-    */
     private void takeTurn() {
         Scanner s = new Scanner(System.in);
         rollDice();
@@ -64,7 +49,7 @@ public class YahtzeeGame {
         System.out.print("Are you (s)atisfied or to you want to (r)oll again and freeze some dice? (s/r): ");
         String userInput = s.nextLine();
         int count = 0;
-        if (userInput.equals("r")) {
+        if (userInput.equals("r")) { //two if statements to achieve exactly three rolls
             chooseFrozen();
             rollDice();
             printDice();
@@ -76,7 +61,7 @@ public class YahtzeeGame {
                 printDice();
             }
         }
-        markScore();
+        markScore(); //mark score whether user chooses s or r
     }
 
     private void rollDice() {
@@ -111,10 +96,10 @@ public class YahtzeeGame {
         Scanner s = new Scanner(System.in);
         System.out.print("Enter which dice to freeze (1-5). Enter them all in one line (ex: 1,2,5 or 134 or 2 5): ");
         String userFreezeDie = s.nextLine();
-        for (int i = 0; i < userFreezeDie.length(); i++){
-            if ((int)userFreezeDie.charAt(i) > 48 && (int)userFreezeDie.charAt(i) < 54) {
-                int die = (int)userFreezeDie.charAt(i);
-                switch (die){
+        for (int i = 0; i < userFreezeDie.length(); i++){ //for loop to iterate through string and find values 1-5
+            if ((int)userFreezeDie.charAt(i) > 48 && (int)userFreezeDie.charAt(i) < 54) { //checks if any of the die are specified in string
+                int die = (int)userFreezeDie.charAt(i); //cast to dec value so i can use it with a switch
+                switch (die){ //switch statement to freeze appropriate die
                     case 49: dieOne.freezeDie(); break;
                     case 50: dieTwo.freezeDie(); break;
                     case 51: dieThree.freezeDie(); break;
@@ -131,39 +116,20 @@ public class YahtzeeGame {
         System.out.println(dieOne.getValue() + " " + dieTwo.getValue() + " " + dieThree.getValue() + " " + dieFour.getValue() + " " + dieFive.getValue());
     }
 
-    /* markScore TODO:
-        1. Create a do while loop in which you:
-            a. Print the score by calling the "printScoreCard" method.
-            b. Create a second do while loop in which you:
-                1. Prompt the user for where they want to place their score (sample prompt provided).
-                2. Read in their choice.
-                3. Repeat until they enter a valid number.
-            c. Create a switch statement based on the number the user previously entered for where they want to place
-               their score. For each case, you should:
-                1. Call the appropriate method from your scorecard object (ex: markOnes, markFullHouse, etc.).
-                   Remember that these methods take in the value of all 5 of the dice as their arguments. Additionally,
-                   these methods will return true if the corresponding category is empty and has been updated, and
-                   will return false if the corresponding category is already full. You should store the returned value
-                   into the boolean "scoreUpdated", which is already given. This will be used to check and see if you
-                   should re-prompt the user.
-                2. Repeat until "scoreUpdated" is true.
-    */
     private void markScore() {
         boolean scoreUpdated = false;
         int userScored;
         int one = dieOne.getValue();
         int two = dieTwo.getValue();
-        int three = dieThree.getValue();
+        int three = dieThree.getValue(); //assigned die values to identifiers to make code below concise
         int four = dieFour.getValue();
         int five = dieFive.getValue();
         Scanner s = new Scanner(System.in);
-        //step 1
+        //do while loops to prompt user until at least one until one of the scores have been updated
         do {
-            //step 1a
             scorecard.printScoreCard();
-            //step 1b
-            do {
-                //step 1b1
+
+            do { //another loop to reprompt until user chooses a valid option
                 System.out.println("Where would you like to place your score?");
                 System.out.println("1. Ones \t7.  3 of Kind");
                 System.out.println("2. Twos \t8.  4 of Kind");
@@ -173,12 +139,10 @@ public class YahtzeeGame {
                 System.out.println("6. Sixes \t12. Yahtzee");
                 System.out.println("\t\t\t13. Chance");
                 System.out.print("Enter 1-13: ");
-                //step 1b2
-                userScored = s.nextInt();
-                //step 1b3
+                userScored = s.nextInt(); //update user input
             } while (userScored > 13 || userScored < 1);
             //step 1c
-                switch (userScored) {
+                switch (userScored) { //switch to identify and mark correct option
                     //step 1c1
                     case 1:
                         scoreUpdated = scorecard.markOnes(one, two, three, four, five);
@@ -222,7 +186,6 @@ public class YahtzeeGame {
                     default:
 
                 }
-         //step 1c2
         } while (!scoreUpdated);
     }
 }
