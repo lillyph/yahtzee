@@ -1,16 +1,17 @@
+
 import java.util.Scanner;
 
 public class YahtzeeDriver
 {
-    /* YahtzeeDriver TODO:
+/* YahtzeeDriver TODO:
         1. Create a new instance of the YahtzeeGame class.
         2. Call the playGame method on the created instance.
         3. Ask the user if they would like to play again, and repeat the game until the user says no.
         4. When the user is done playing, print the number of games played, in addition to the min score,
-           max score, and average score of all games. These values should be calculated within this code.
-    */
-    public static void main(String [] args)
-    {
+//           max score, and average score of all games. These values should be calculated within this code.
+//    */
+
+    public static void main(String [] args){
         Scanner s = new Scanner(System.in);
         String play;
         int score;
@@ -37,3 +38,4 @@ public class YahtzeeDriver
         System.out.println("Average score: " + scoreSum / timesPlayed);
     }
 }
+

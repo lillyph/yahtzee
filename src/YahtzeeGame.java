@@ -9,6 +9,7 @@ public class YahtzeeGame {
     private YahtzeeDie dieThree = new YahtzeeDie();
     private YahtzeeDie dieFour = new YahtzeeDie();
     private YahtzeeDie dieFive = new YahtzeeDie();
+    private frame f = new frame('c');
 
     //TODO: create a new YahtzeeScorecard object as instance data here:
     private YahtzeeScorecard scorecard = new YahtzeeScorecard();
@@ -16,12 +17,6 @@ public class YahtzeeGame {
     public YahtzeeGame() {
     }
 
-    /* PlayGame TODO:
-        1. Call the method "takeTurn" 13 times. (You will be coding takeTurn later on in this class,
-           so feel free to do that first!)
-        2. Print the scorecard by calling the method "printScoreCard" on your YahtzeeScorecard object.
-        3. Return the grand total by calling the method "getGrandTotal" on your YahtzeeScorecard object.
-    */
     public int playGame() {
         takeTurn();
         takeTurn();
@@ -40,40 +35,23 @@ public class YahtzeeGame {
         return scorecard.getGrandTotal();
     }
 
-    /* takeTurn TODO:
-        1. Roll the dice by calling the "rollDice" method. (You will be coding rollDice later on in this class,
-           so feel free to do that first!)
-        2. Print out their first dice roll by calling the "printDice" method. (You will be coding printDice later
-           on in this class, so feel free to do that first!)
-        3. Ask the player if they are satisfied with their roll or if they want to roll again and freeze some
-           dice (prompt already given).
-        4. If the user chooses to roll again (enters "r") you should:
-             a. Ask them to choose which dice to freeze (make use of the "chooseFrozen" method, below).
-             b. Roll the dice again.
-             c. Print out their second dice roll.
-             d. Prompt the user to choose again (s/r).
-             e. If the user chooses to roll again, repeat a-d again for their third roll. (Max 3 rolls allowed.)
-        5. If the user chooses "s" after either of the first two rolls, immediately stop and go to step 6.
-        6. Call the "markScore" method. (You will be coding markScore later on in this class,
-           so feel free to do that first!)
-    */
     private void takeTurn() {
-        Scanner s = new Scanner(System.in);
         rollDice();
-        printDice();
+        f.displayDie(getDie());
+        Scanner s = new Scanner(System.in);
+        String userInput;
         System.out.print("Are you (s)atisfied or to you want to (r)oll again and freeze some dice? (s/r): ");
-        String userInput = s.nextLine();
+        userInput = s.nextLine();
         int count = 0;
         if (userInput.equals("r")) {
             chooseFrozen();
             rollDice();
-            printDice();
+            f.displayDie(getDie());
             System.out.print("Are you (s)atisfied or to you want to (r)oll again and freeze some dice? (s/r): ");
-            userInput = s.nextLine();
             if (userInput.equals("r")) {
                 chooseFrozen();
                 rollDice();
-                printDice();
+                f.displayDie(getDie());
             }
         }
         markScore();
@@ -127,8 +105,8 @@ public class YahtzeeGame {
 
     }
 
-    private void printDice() {
-        System.out.println(dieOne.getValue() + " " + dieTwo.getValue() + " " + dieThree.getValue() + " " + dieFour.getValue() + " " + dieFive.getValue());
+    private int[] getDie() {
+        return new int[]{dieOne.getValue(), dieTwo.getValue(), dieThree.getValue(), dieFour.getValue(), dieFive.getValue()};
     }
 
     /* markScore TODO:
