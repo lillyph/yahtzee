@@ -7,23 +7,79 @@
  **/
 
 public class YahtzeeScorecard {
-    private int ones = -1;
-    private int twos = -1;
-    private int threes = -1;
-    private int fours = -1;
-    private int fives = -1;
-    private int sixes = -1;
-    private int threeKind = -1;
-    private int fourKind = -1;
-    private int yahtzee = -1;
-    private int chance = -1;
-    private int fullHouse = -1;
-    private int smStraight = -1;
-    private int lgStraight = -1;
-    private boolean bonus = false;
-    private int yahtzeeBonus = 0;
+    private static int ones = -1;
+    private static int twos = -1;
+    private static int threes = -1;
+    private static int fours = -1;
+    private static int fives = -1;
+    private static int sixes = -1;
+    private static int threeKind = -1;
+    private static int fourKind = -1;
+    private static int yahtzee = -1;
+    private static int chance = -1;
+    private static int fullHouse = -1;
+    private static int smStraight = -1;
+    private static int lgStraight = -1;
+    private static boolean bonus = false;
+    private static int yahtzeeBonus = 0;
 
     public YahtzeeScorecard() { }
+
+    public int getOnes(){
+        return ones;
+    }
+
+    public int getTwos(){
+        return twos;
+    }
+
+    public int getThrees(){
+        return threes;
+    }
+
+    public int getFours(){
+        return fours;
+    }
+
+    public int getFives(){
+        return fives;
+    }
+
+    public int getSixes(){
+        return sixes;
+    }
+
+    public int getThreeKind(){
+        return threeKind;
+    }
+
+    public int getFourKind(){
+        return fourKind;
+    }
+
+    public int getFullHouse(){
+        return fullHouse;
+    }
+
+    public int getSmStraight(){
+        return smStraight;
+    }
+
+    public int getLgStraight(){
+        return lgStraight;
+    }
+
+    public int getYahtzee(){
+        return yahtzee;
+    }
+
+    public int getYahtzeeBonus(){
+        return yahtzeeBonus;
+    }
+
+    public int getChance(){
+        return chance;
+    }
 
     public boolean markOnes(int var1, int var2, int var3, int var4, int var5) {
         if (ones != -1)
@@ -268,6 +324,14 @@ public class YahtzeeScorecard {
         return sum;
     }
 
+    public int getUpperBonus() {
+        if (bonus){
+            return 35;
+        } else {
+            return 0;
+        }
+    }
+
     public int getLowerTotal() {
         int extraOnes = 0; //same deal here!
         int [] totalNums = {threeKind, fourKind, fullHouse, smStraight, lgStraight, yahtzee, chance};
@@ -282,147 +346,100 @@ public class YahtzeeScorecard {
         return getLowerTotal() + getUpperTotal();
     }
 
-    //notice: this method is slightly edited just to adjust formatting (including adding a yahtzee bonus)! no major function changes have been made
-
     public void printScoreCard() {
-        System.out.println();
-        System.out.println("*********************************");
-        System.out.println("*      Yahtzee Score Card       *");
-        System.out.println("*                               *");
-        System.out.print("*  Ones:\t\t");
         if (this.ones == -1) {
             System.out.print("__");
         } else {
             System.out.print(this.ones);
         }
 
-        System.out.println("\t\t\t\t*");
-        System.out.print("*  Twos:\t\t");
         if (this.twos == -1) {
             System.out.print("__");
         } else {
             System.out.print(this.twos);
         }
 
-        System.out.println("\t\t\t\t*");
-        System.out.print("*  Threes:\t\t");
         if (this.threes == -1) {
             System.out.print("__");
         } else {
             System.out.print(this.threes);
         }
 
-        System.out.println("\t\t\t\t*");
-        System.out.print("*  Fours:\t\t");
         if (this.fours == -1) {
             System.out.print("__");
         } else {
             System.out.print(this.fours);
         }
 
-        System.out.println("\t\t\t\t*");
-        System.out.print("*  Fives:\t\t");
         if (this.fives == -1) {
             System.out.print("__");
         } else {
             System.out.print(this.fives);
         }
 
-        System.out.println("\t\t\t\t*");
-        System.out.print("*  Sixes:\t\t");
         if (this.sixes == -1) {
             System.out.print("__");
         } else {
             System.out.print(this.sixes);
         }
 
-        System.out.println("\t\t\t\t*");
-        System.out.println("*\t\t\t\t\t\t\t\t*");
-        System.out.print("*  Upper Bonus:\t\t");
         if (this.bonus) {
             System.out.print("35");
         } else {
             System.out.print("0");
         }
 
-        System.out.println("\t\t\t*");
-        System.out.print("*  Upper Total:\t\t");
-        System.out.print(this.getUpperTotal());
-        System.out.println("\t\t\t*");
-        System.out.println("*                               *");
-        System.out.print("*  3 of Kind:\t\t");
         if (this.threeKind == -1) {
             System.out.print("__");
         } else {
             System.out.print(this.threeKind);
         }
 
-        System.out.println("\t\t\t*");
-        System.out.print("*  4 of Kind:\t\t");
         if (this.fourKind == -1) {
             System.out.print("__");
         } else {
             System.out.print(this.fourKind);
         }
 
-        System.out.println("\t\t\t*");
-        System.out.print("*  Full House:\t\t");
         if (this.fullHouse == -1) {
             System.out.print("__");
         } else {
             System.out.print(this.fullHouse);
         }
 
-        System.out.println("\t\t\t*");
-        System.out.print("*  Sm Straight:\t\t");
         if (this.smStraight == -1) {
             System.out.print("__");
         } else {
             System.out.print(this.smStraight);
         }
 
-        System.out.println("\t\t\t*");
-        System.out.print("*  Lg Straight:\t\t");
         if (this.lgStraight == -1) {
             System.out.print("__");
         } else {
             System.out.print(this.lgStraight);
         }
 
-        System.out.println("\t\t\t*");
-        System.out.print("*  Yahtzee:\t\t");
         if (this.yahtzee == -1) {
             System.out.print("\t__");
         } else {
             System.out.print("\t" + this.yahtzee);
         }
 
-        System.out.println("\t\t\t*");
-        System.out.print("*  Yahtzee Bonus:");
         if (this.yahtzeeBonus == 0) {
             System.out.print("\t__");
         } else {
             System.out.print(this.yahtzeeBonus * 100);
         }
 
-        System.out.println("\t\t\t*");
-        System.out.print("*  Chance:\t\t");
         if (this.chance == -1) {
             System.out.print("\t__");
         } else {
             System.out.print("\t" + this.chance);
         }
 
-        System.out.println("\t\t\t*");
-        System.out.println("*                               *");
-        System.out.print("*  Lower Total:\t\t");
         System.out.print(this.getLowerTotal());
-        System.out.println("\t\t\t*");
-        System.out.println("*                               *");
-        System.out.print("*  Grand Total:\t\t");
+
         System.out.print(this.getGrandTotal());
-        System.out.println("\t\t\t*");
-        System.out.println("**********************************");
-        System.out.println();
+
     }
 }
